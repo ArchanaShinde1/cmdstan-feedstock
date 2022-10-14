@@ -1,5 +1,5 @@
 {% set name = "cmdstan" %}
-{% set version = "2.30.1" %}
+{% set version = "2.29.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,11 +7,11 @@ package:
 
 source:
   url: https://github.com/stan-dev/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz  # [x86 or arm64]
-  sha256: bab76dcefa7f4c955595c0bf0496770507fc6ab0df5896e8cf8c2db0a17eedb9  # [x86 or arm64]
+  sha256: 567b531fa73ffdf706caa17eb3344e1dfb41e86993caf8ba40875ff910335153  # [x86 or arm64]
   url: https://github.com/stan-dev/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}-linux-arm64.tar.gz  # [aarch64]
-  sha256: a23ffb2474f82d9711007880d8a6ccea965b39ee82f7c15ffff70db06f43226f  # [aarch64]
+  sha256: 9b7eec78e217cab39d3d794e817a1ca08f36b1e5cb434c4cd8263bb2650ba125  # [aarch64]
   url: https://github.com/stan-dev/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}-linux-ppc64el.tar.gz  # [ppc64le]
-  sha256: 4a314944eb4e61f27e7a30f0aedd129297415386c175cbf02c80711cf0986d55  # [ppc64le]
+  sha256: 5ad22765e04060c651a1e248513979a5ed12d75c782e6c3809cfe511526a06d3  # [ppc64le]
   patches:
     - no-dtag-flag.patch  # [osx]
 
@@ -21,26 +21,14 @@ build:
 
 requirements:
   build:
-    - {{ compiler('cxx') }}        # [not win]
-    - make                         # [not win]
-    - {{ compiler('m2w64_cxx') }}  # [win]
-    - m2w64-make                   # [win]
-    - m2-filesystem                # [win]
-    - m2-sed                       # [win]
-    - m2-coreutils                 # [win]
+    - {{ compiler('cxx') }}        
+    - make                         
   host:
-    - tbb-devel                    # [not win]
+    - tbb-devel                    
   run:
-    - {{ compiler('cxx') }}        # [not win]
-    - make                         # [not win]
-    - tbb-devel                    # [not win]
-    - {{ compiler('m2w64_cxx') }}  # [win]
-    - m2w64-make                   # [win]
-    - m2-filesystem                # [win]
-    - m2-sed                       # [win]
-    - m2-coreutils                 # [win]
-  run_constrained:
-    - tbb >=2021                   # [win]
+    - {{ compiler('cxx') }}        
+    - make                         
+    - tbb-devel                    
 
 test:
   downstreams:
@@ -65,5 +53,4 @@ about:
 
 extra:
   recipe-maintainers:
-    - maresb
-    - WardBrian
+    - open-ce/open-ce-dev-teamopen-ce/open-ce-dev-team
